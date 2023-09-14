@@ -1,6 +1,7 @@
 // Rota principal
 const express = require("express");
 const router = express.Router();
+const Events = require("../models/Event");
 
 router.get("/", function (req, res) {
   Events.findAll().then(function (events) {
