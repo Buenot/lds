@@ -1,45 +1,20 @@
+// Rota principal
 const express = require("express");
-const app = express();
-const expbs = require("express-handlebars");
-const bodyParser = require("body-parser");
-const path = require("path"); // Importe o módulo 'path'
-const Events = require("./models/Event");
-const os = require("os");
+const router = express.Router();
 
-// Configuração de host
-const appPort = process.env.PORT || 8081;
-app.set("port", appPort);
-
-// Configuração para servir arquivos estáticos na pasta 'public'
-app.use(express.static(path.join(__dirname, "public")));
-
-var hbs = expbs.create({
-  defaultLayout: "main",
-  layoutsDir: path.join(__dirname, "views/layouts"),
-  partialsDir: path.join(__dirname, "views/components/"),
-});
-
-app.engine("handlebars", hbs.engine);
-app.set("view engine", "handlebars");
-
-// Body Parser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Rota princiapal
-app.get("/", function (req, res) {
+router.get("/", function (req, res) {
   Events.findAll().then(function (events) {
     res.render("home", { events: events });
   });
 });
 
 // Rota para o formulário
-app.get("/form", function (req, res) {
+router.get("/form", function (req, res) {
   res.render("form");
 });
 
 // Rota para adicionar um evento
-app.post("/add", function (req, res) {
+router.post("/add", function (req, res) {
   Events.create({
     sport: req.body.sport,
     hostTeam: req.body.hostTeam,
@@ -57,7 +32,7 @@ app.post("/add", function (req, res) {
 });
 
 // Rota para remover um evento
-app.get("/remove/:id", function (req, res) {
+router.get("/remove/:id", function (req, res) {
   Events.destroy({ where: { id: req.params.id } })
     .then(function () {
       res.send("Evento apagado com sucesso.");
@@ -68,7 +43,7 @@ app.get("/remove/:id", function (req, res) {
 });
 
 // Rota para atualizar um evento
-app.get("/update/:id", function (req, res) {
+router.get("/update/:id", function (req, res) {
   const eventId = req.params.id; // ID do evento que você deseja atualizar
   Events.findByPk(eventId).then(function (events) {
     res.render("update", { events: events });
@@ -76,7 +51,7 @@ app.get("/update/:id", function (req, res) {
 });
 
 // Rota para processar a atualização de um evento
-app.post("/update", function (req, res) {
+router.post("/update", function (req, res) {
   const eventId = req.body.eventId;
   const dataUp = {
     sport: req.body.sport,
@@ -102,9 +77,4 @@ app.post("/update", function (req, res) {
     });
 });
 
-// Servidor
-app.listen(app.get("port"), function (req, res) {
-  console.log(
-    `Server is running at port http://${os.hostname}:${app.get("port")}`
-  );
-});
+module.exports = router;
