@@ -1,17 +1,23 @@
-<form action="/update" method="POST">
-    <p>ID:</p>
-    <input type="text" value="{{events.dataValues.id}}" name="eventId">
+{{> header}}
+
+<div class="space-between-header-and-form"></div>
+
+<form action="/add" method="POST" class="smaller-form"  style=" margin-bottom: 40px;">
+  <div style="max-width: 800px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f8f8f8;">
     <p>Esporte:</p>
-    <input type="text" value="{{events.dataValues.sport}}" name="sport">
+    <input type="text" name="sport">
     <p>Time da casa:</p>
-    <input type="text" value="{{events.dataValues.hostTeam}}" name="hostTeam">
+    <input type="text" name="hostTeam">
     <p>Time visitante:</p>
-    <input type="text" value="{{events.dataValues.visitingTeam}}" name="visitingTeam">
+    <input type="text" name="visitingTeam">
     <p>Horário do evento:</p>
-    <input type="text" value="{{events.dataValues.eventTime}}" name="eventTime">
+    <input type="text" name="eventTime">
     <p>Data do evento:</p>
-    <input type="text" value="{{events.dataValues.dateEvent}}" name="dateEvent">
+    <input type="text" name="dateEvent" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
     <p>Local do evento:</p>
-    <textarea name="eventsPlace">{{events.dataValues.eventsPlace}}</textarea>
-    <button type="submit" >Atualizar evento</button>
+    <textarea name="eventsPlace"></textarea>
+    <button type="submit">Cadastrar evento</button>
+  </div>
 </form>
+
+{{> footer}}

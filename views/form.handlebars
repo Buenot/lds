@@ -1,17 +1,20 @@
-  {{> header}}
-  
-  <form action="/add" method="POST">
-    <p>Esporte:</p>
-    <input type="text" name="sport">
-    <p>Time da casa:</p>
-    <input type="text" name="hostTeam">
-    <p>Time visitante:</p>
-    <input type="text" name="visitingTeam">
-    <p>Horário do evento:</p>
-    <input type="text" name="eventTime">
-    <p>Data do evento:</p>
-    <input type="text" name="dateEvent" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
-    <p>Local do evento:</p>
-    <textarea name="eventsPlace"></textarea>
-    <button type="submit">Cadastrar evento</button>
-  </form>
+{{> header}}
+
+<div class="space-between-header-and-form"></div>
+
+<form action="/add" method="POST" style="margin-top: 20px; width: 500px; height: 630px; margin-bottom: 40px; "> 
+  <p>Esporte:</p>
+  <input type="text" name="sport">
+  <p>Time da casa:</p>
+  <input type="text" name="hostTeam">
+  <p>Time visitante:</p>
+  <input type="text" name="visitingTeam">
+  <p>Horário do evento:</p>
+  <input type="text" name="eventTime">
+  <p>Data do evento:</p>
+  <input type="text" name="dateEvent" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+  <p>Local do evento:</p>
+  <textarea name="eventsPlace"></textarea>
+  <button type="submit">Cadastrar evento</button>
+</form>
+{{> footer}}

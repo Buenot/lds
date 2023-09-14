@@ -1,15 +1,25 @@
-<p>Eventos:</p>
-{{#each events}}
+{{> header}}
 
-    <p>Esporte: {{dataValues.sport}}</p>
-    <p>time da casa: {{dataValues.hostTeam}}</p>
-    <p>time visitante:{{dataValues.visitingTeam}}</p>
-    <p>horario do evento: {{dataValues.eventTime}}</p>
-    <p>data do evento: {{dataValues.dateEvent}}</p>
-    <p>local do evento: {{dataValues.eventsPlace}}</p>
-    <a href="/remove/{{dataValues.id}}"><button>Apagar</button></a>
-    <a href="/update/{{dataValues.id}}"><button>Atualizar</button></a>
+<div class="container">
+  <h2>Eventos:</h2>
+  <div class="row">
+    {{#each events}}
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Esporte: {{dataValues.sport}}</h5>
+          <p class="card-text">Time da casa: {{dataValues.hostTeam}}</p>
+          <p class="card-text">Time visitante: {{dataValues.visitingTeam}}</p>
+          <p class="card-text">Horário do evento: {{dataValues.eventTime}}</p>
+          <p class="card-text">Data do evento: {{dataValues.dateEvent}}</p>
+          <p class="card-text">Local do evento: {{dataValues.eventsPlace}}</p>
+          <a href="/remove/{{dataValues.id}}" class="btn btn-danger">Apagar</a>
+          <a href="/update/{{dataValues.id}}" class="btn btn-primary">Atualizar</a> <!-- Link para a página de atualização com o ID do evento -->
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
 
-{{/each}}
-
-
+{{> footer}}

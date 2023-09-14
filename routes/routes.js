@@ -14,6 +14,11 @@ router.get("/form", function (req, res) {
   res.render("form");
 });
 
+// Rota para o update
+router.get("/update", function (req, res) {
+  res.render("update");
+});
+
 // Rota para adicionar um evento
 router.post("/add", function (req, res) {
   Events.create({
